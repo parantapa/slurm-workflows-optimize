@@ -1,0 +1,15 @@
+# Ship only the slurm_workflows_optimize package:
+# its Python modules, plus the project's README and license.
+#
+# setuptools_scm otherwise adds every git-tracked file to the sdist
+# (docs, tests, examples, ...),
+# so start from nothing and add back exactly what belongs in the distribution.
+#
+# List pyproject.toml explicitly,
+# or a rebuild from the sdist fails.
+# setuptools itself adds setup.cfg and PKG-INFO.
+global-exclude *
+recursive-include src/slurm_workflows_optimize *.py
+include README.md
+include LICENSE
+include pyproject.toml

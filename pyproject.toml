@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slurm-workflows-optimize"
+dynamic = ["version"]
+authors = [
+  { name="Parantapa Bhattacharya", email="parantapa@virginia.edu" },
+]
+description = "An optimization framework for slurm-workflows."
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "slurm-workflows>=5,<6",
+    # 1.15 is where `qmc.Sobol` took `rng=`, the seed argument used here.
+    "scipy>=1.15",
+]
+
+[project.optional-dependencies]
+botorch = ["botorch"]
+test = ["pytest", "botorch"]
+dev = ["black", "pyright"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+# A bare `pytest` still runs these, and `-m "not integration"` leaves them out.
+markers = [
+    "integration: crosses a real process boundary (a ds-service server and a worker)",
+]
+# Deprecations fail the suite, and every other warning stays a warning.
+# See the developer notes, Conventions.
+filterwarnings = [
+    "error::DeprecationWarning",
+    "error::PendingDeprecationWarning",
+]
+
+# The target matches the `requires-python` floor,
+# so the formatting does not drift
+# with the Python version that runs black.
+[tool.black]
+target-version = ["py312"]
+
+[tool.pyright]
+include = ["src", "tests", "examples"]
+pythonVersion = "3.12"
+
+[tool.setuptools_scm]
+fallback_version = "1.0.0-dev"
+
+[project.urls]
+"Homepage" = "https://github.com/parantapa/slurm-workflows-optimize"

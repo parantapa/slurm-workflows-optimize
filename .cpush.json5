@@ -1,0 +1,6 @@
+{
+    project: "slurm-workflows-optimize",
+    remotes: {
+        rivanna: "rivanna:slurm-workflows-optimize",
+    }
+}
