@@ -1,4 +1,4 @@
-# slurm-workflows-optimize: parameter search on Slurm clusters
+# slurm-workflows-optimize: an optimization and hyperparameter tuning framework for slurm-workflows
 
 `slurm-workflows-optimize` searches a parameter space
 across a pool of workers on a Slurm cluster.

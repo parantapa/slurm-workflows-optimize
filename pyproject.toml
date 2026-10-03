@@ -8,7 +8,7 @@ dynamic = ["version"]
 authors = [
   { name="Parantapa Bhattacharya", email="parantapa@virginia.edu" },
 ]
-description = "An optimization framework for slurm-workflows."
+description = "An optimization and hyperparameter tuning framework for slurm-workflows."
 readme = "README.md"
 requires-python = ">=3.12"
 classifiers = [
